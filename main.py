@@ -40,7 +40,7 @@ def display_menu():
 def user_selection():
     global isUsed #global variable isUsed
     display_menu()
-    user_choice = int(input("Enter a number between 1-7: "))
+    user_choice = int(input("Enter a number between 1-8: "))
     
     if user_choice == 1:  #Go to Store Inventory. o
         display_inventory() #print('show inventory') o
@@ -105,14 +105,39 @@ def display_inventory():
 
 # add a new product function
 def add_new_product():
-   print("\n **Adding A New Product To The Inventory**")
-   print("------------------------------------")
-   type = input("Enter a type: ")
-   price = int(input("Enter a price: "))
-   total = int(input("Enter a total: "))
+  print("\n **Adding A New Product To The Inventory**")
+  print("------------------------------------")
+  type = input("Enter a type: ")
+  price = int(input("Enter a price: "))
+  total = int(input("Enter a total: "))
+  def age_categorization():
+    global age_cat
+    print("------------------------------------")
+    print("Age categorization: ")
+    print("1. under 11")
+    print("2. 11 to 19")
+    print("3. 20 to 40")
+    print("4. 41 to 65")
+    print("5. 65 and above")
+    print("6. Skip")
+    try:
+      age_cat = int(input("\nEnter a number between 1-6: "))
+      if  6 >= age_cat >= 1 :
+        gender_categorization()
+      else:
+        print("Invalid input! Please try again.")
+        return age_categorization()
+    except Exception:
+      print("\nInvalid input! Please try again.")
+      return age_categorization()
+  def gender_categorization():
+    print('Yay!')
+    
+  age_categorization()
+  
    # creates a new product 
-   new_product = Product(type, price, total) 
-   inventory.append(new_product.features()) # adds new product features to the inventory
+  new_product = Product(type, price, total) 
+  inventory.append(new_product.features()) # adds new product features to the inventory
 
 # delete a product from inventory
 def remove_product():
