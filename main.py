@@ -32,7 +32,8 @@ def display_menu():
   print("4. Remove Products") 
   print("5. Show Shopping History")
   print("6. Restock products")
-  print("7. Exit\n")  
+  print("7. Customer service")
+  print("8. Exit\n")  
         
 
   #used to capture and process user selections o
@@ -54,6 +55,8 @@ def user_selection():
     elif user_choice == 6:
       restock_products()
     elif user_choice == 7:
+      chatbot()
+    elif user_choice == 8:
         print("Thank you for shopping at Walmart!"
               )  # adds thank you message before exiting the program
         isUsed = False  #print("program ends.")  # changes the value of isUsed to False
