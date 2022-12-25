@@ -292,24 +292,25 @@ def chatbot():
     print("\n------------------------------------\n")
     
     ###----Age----###
-    
-    age = int(input('\nHow old are you? (Type "-1" to skip this question)\n ')) # Make sure to make comment about age.
+    def age()
+      age = int(input('\nHow old are you? (Type "-1" to skip this question)\n ')) # Make sure to make comment about age.
 
     ###----Gender----###
-    
-    print("\n------------------------------------\n") # Make sure to make function for gender.
-    print('\nWhat is your gender?\n')
-    print("1. Female")
-    print("2. Male")
-    print("3. Other")
-    print("4. Skip")
-    gender = int(input('\nPlease choose a number from 1-4: '))
-    if 1 > gender:
-      print("Invalid input!")
-      return chatbot()
-    elif 4 < gender:
-      print("Invalid input!")
-      return chatbot()
+    def gender():
+      global gender
+      print("\n------------------------------------\n") # Make sure to make function for gender.
+      print('\nWhat is your gender?\n')
+      print("1. Female")
+      print("2. Male")
+      print("3. Other")
+      print("4. Skip")
+      gender = int(input('\nPlease choose a number from 1-4: '))
+      if 1 > gender:
+        print("Invalid input!")
+        return chatbot()
+      elif 4 < gender:
+        print("Invalid input!")
+        return chatbot()
 
 
       
