@@ -1,3 +1,5 @@
+# NOTICE: This was made before the Elite101 request of making a chatbot, except for the chatbot itself and a couple of other features. The shop was premade, but the chatbot was NOT. In addition, some features, such as adding items, are modified to help make the chatbot. 
+
 #############
 #Section 1 - Import Modules and Global Variables
 #############
@@ -282,10 +284,95 @@ class Product:
              }
 
 def chatbot():
+  try:
+    name = str(input('\nHi, what is your name? ')).capitalize()
+    print("\n------------------------------------\n")
+    print(f"\n{name}, I'm Simon and I'm here to help you.")
+    print("But first, I'll have to get some background information, if you may.")
+    print("\n------------------------------------\n")
+    
+    ###----Age----###
+    
+    age = int(input('\nHow old are you? (Type "-1" to skip this question)\n ')) # Make sure to make comment about age.
+
+    ###----Gender----###
+    
+    print("\n------------------------------------\n") # Make sure to make function for gender.
+    print('\nWhat is your gender?\n')
+    print("1. Female")
+    print("2. Male")
+    print("3. Other")
+    print("4. Skip")
+    gender = int(input('\nPlease choose a number from 1-4: '))
+    if 1 > gender:
+      print("Invalid input!")
+      return chatbot()
+    elif 4 < gender:
+      print("Invalid input!")
+      return chatbot()
+
+
+      
+    print("\n------------------------------------\n")
+    def feeling():
+      day = input("\nIf you had one word to describe your day, what would it be? ").lower()
+
+      good = ["good", "awesome", "nice", "alright", "okay", "ok", "alr", "rad", "cool", "best", "bright", "super", "splendid", "lovely", "exciting", "happy", "smooth", "pleasant", "lucky", "fine", "great"]
+      bad = ["bad", "awful", "not good", "horrible", "long", "miserable", "sad", "rough", "crappy", "worst", "unpleasant", "dissapointing", "dreadful", "difficult", "none of your business", "horrendous", "long"]
+      boring = ["meh", "eh", "boring", "repetitive", "dull", "unvaried", "in between", "not bad, not good"]
+      interesting = ["interesting", "fascinating", "surprising", "shocking", "weird", "strange", "confusing"]
+
+      good_response = ["\n I agree! What a pleasant day it is.",
+                       "\nWhat a lovely day for both of us!",
+                       f"\nThat's {day}!",
+                       "\nKeep smiling!",
+                       "\nWhat an awesome smile you might be having!"]
+      bad_response = ["\nI hope you feel better.",
+                      "\nTomorrow’s a new day.",
+                      "\nWell, that stinks!"
+      ]
+
+      boring_response = ["\nIf you're bored, how about seeing some of our recommendations!",
+                         "\nWell then, let me spice things up for you with our recommendations!",
+                         "\nLet me make your day exciting with our recommendations!"
+      ]
+
+      interesting_response = ["\nThat's interesting.",
+                              "\nHuh.",
+                              "\nCool."
+      ]
+
+      generic_response = ["Okay. Let's proceed."
+      ]
+      
+      if day in good:
+        print(random.choice(good_response))
+      elif day in bad:
+        print(random.choice(bad_response))
+      elif day in boring:
+        print(random.choice(boring_response))
+      elif day in interesting:
+        print(random.choice(interesting_response))
+      else:
+        print(random.choice(generic_response))
+      
+    feeling()
+    
+    
+      
+  
+    
+    
+  except Exception:
+    print('Invalid input! Please try again.')
+    return
+  
+             
+  
   
 
 #############
-#Section 4 - Running Section
+#Section 3 - Running Section
 #############
 
 money_syst()
