@@ -31,8 +31,8 @@ def display_menu():
   print("3. Order A Product")  
   print("4. Remove Products") 
   print("5. Show Shopping History")
-  print("6. Restock products")
-  print("7. Customer service")
+  print("6. Restock Products")
+  print("7. Customer Service")
   print("8. Exit\n")  
         
 
@@ -131,14 +131,30 @@ def add_new_product():
       print("\nInvalid input! Please try again.")
       return age_categorization()
   def gender_categorization():
-    print('Yay!')
-    
-  age_categorization()
+    global gen_cat
+    print("------------------------------------")
+    print("Gender categorization: ")
+    print("1. Female")
+    print("2. Male")
+    print("3. Other")
+    print("4. Skip")
+    try:
+      gen_cat = int(input("\nEnter a number between 1-4: "))
+      if  4 >= gen_cat >= 1 :
+        new_product()
+      else:
+        print("Invalid input! Please try again.")
+        return gender_categorization()
+    except Exception:
+      print("\nInvalid input! Please try again.")
+      return age_categorization()
   
    # creates a new product 
-  new_product = Product(type, price, total) 
-  inventory.append(new_product.features()) # adds new product features to the inventory
-
+  def new_product():
+    new_product = Product(type, price, total) 
+    inventory.append(new_product.features()) # adds new product features to the inventory
+    
+  age_categorization()
 # delete a product from inventory
 def remove_product():
   toDeleteIndex = -99
@@ -264,13 +280,14 @@ class Product:
               "price":self.price,
               "total":self.total
              }
+
+def chatbot():
   
 
 #############
 #Section 4 - Running Section
 #############
 
-####Do Not Change this code, only uncomment to test your code
 money_syst()
 
 while isUsed:
