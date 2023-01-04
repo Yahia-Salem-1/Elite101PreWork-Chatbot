@@ -286,40 +286,39 @@ class Product:
 def chatbot():
   global age_cat
   global gen_cat
-  try:
-    name = str(input('\nHi, what is your name? ')).capitalize()
-    print("\n------------------------------------\n")
-    print(f"\n{name}, I'm Simon and I'm here to help you.")
-    print("But first, I'll have to get some background information, if you may.")
-    print("\n------------------------------------\n")
+  name = str(input('\nHi, what is your name? ')).capitalize()
+  print("\n------------------------------------\n")
+  print(f"\n{name}, I'm Simon and I'm here to help you.")
+  print("But first, I'll have to get some background information, if you may.")
+  print("\n------------------------------------\n")
     
     ###----Age----###
-    def age():
-      try:
-        global age
-        age = int(input('\nHow old are you? (Type "-1" to skip this question)\n')) # The prompt.
-        if 0<= age < 11:
-          print("\nOh. You are still pretty young!")
-        elif 11 <= age <= 19:
-          print("\nYou are in your tween/teen years! Pretty cool.") # The answers to the input.
-        elif 20 <= age <= 40:
+  def age_func():
+    try:
+      global age
+      age = int(input('\nHow old are you? (Type "-1" to skip this question)\n')) # The prompt.
+      if 0<= age < 11:
+        print("\nOh. You are still pretty young!")
+      elif 11 <= age <= 19:
+        print("\nYou are in your tween/teen years! Pretty cool.") # The answers to the input.
+      elif 20 <= age <= 40:
           print("\nYou are an adult. You rock!")
-        elif 41 <= age <= 65:
+      elif 41 <= age <= 65:
           print("\nAs you age, you get wiser.")
-        elif 65 < age:
+      elif 65 < age:
           print("\nI wish you the best health.")
-        elif age == -1:
+      elif age == -1:
           print("")
-        else: 
+      else: 
           print("\nThat's unrealistic. Try again.")
           return age()
-      except Exception:
+    except Exception:
         print("\nInvalid input.")
         return age()
           
     ###----Gender----###
-    def gender():
-      try:
+  def gender_func():
+    try:
         global gender
         print("\n------------------------------------\n") # Make sure to make function for gender.
         print('\nWhat is your gender?\n')
@@ -334,15 +333,15 @@ def chatbot():
         elif 4 < gender:
           print("Invalid input!")
           return chatbot()
-      except Exception:
+    except Exception:
         print("\nInvalid input.")
         return gender()  
 
 
       
     print("\n------------------------------------\n")
-    def feeling():
-      try:
+  def feeling():
+    try:
         day = input("\nIf you had one word to describe your day, what would it be? ").lower()
   
         good = ["good", "awesome", "nice", "alright", "okay", "ok", "alr", "rad", "cool", "best", "bright", "super", "splendid", "lovely", "exciting", "happy", "smooth", "pleasant", "lucky", "fine", "great"]
@@ -383,22 +382,43 @@ def chatbot():
           print(random.choice(interesting_response))
         else:
           print(random.choice(generic_response))
-      except Exception:
-        print("\nInvalid input.")
-        return feeling()
-
-    age()
-    gender()
-    feeling()
+          
+        print("\n----------------------------") 
+    except Exception:
+      print("Invalid input. Please try again!")
+      return feeling()
+   
+    # ----------- RECOMMENDATIONS -----------
+      
+        
+ 
+  def recommendations():
+    list_allAges_genF = [4, 5]
+    list_allAges_genE = [0, 1, 2, 3]
+    list_allAges_genM = [6]
+    new_list_allAges_genF = [inventory[index] for index in list_allAges_genF]
+    #learned from https://bobbyhadz.com/blog/python-access-multiple-elements-in-list-by-index
+    print("\nHere are some recommendations for you:\n\n")
+    print("1. I am interested.")
+    print("2. I am not interested\n")
+    
+    if 0 <= age < 11 and gender == 1:
+      for product in new_list_allAges_genF:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+    print("___________________________")
+            
+         
+    
+  age_func()
+  gender_func()
+  feeling()
+  recommendations()
     
     
       
   
-    
-    
-  except Exception:
-    print('Invalid input! Please try again.')
-    return chatbot()
     
 
   
