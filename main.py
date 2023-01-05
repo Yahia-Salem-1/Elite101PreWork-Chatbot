@@ -108,55 +108,63 @@ def display_inventory():
 
 # add a new product function
 def add_new_product():
-  gen_cat = ""
-  age_cat = ""
+  global type, price, total
   print("\n **Adding A New Product To The Inventory**")
   print("------------------------------------")
   type = input("Enter a type: ")
   price = int(input("Enter a price: "))
   total = int(input("Enter a total: "))
+  age_categorization()
   
-  def age_categorization():
-    global age_cat
-    print("------------------------------------")
-    print("Age categorization: ")
-    print("1. under 11")
-    print("2. 11 to 19")
-    print("3. 20 to 40")
-    print("4. 41 to 65")
-    print("5. 65 and above")
-    print("6. Skip")
-    try:
-      age_cat = int(input("\nEnter a number between 1-6: "))
-      if  6 >= age_cat >= 1 :
-        gender_categorization()
-      else:
-        print("Invalid input! Please try again.")
-        return age_categorization()
-    except Exception:
-      print("\nInvalid input! Please try again.")
+def age_categorization():
+  global age_cat
+  print("------------------------------------")
+  print("Age categorization: ")
+  print("1. under 11")
+  print("2. 11 to 19")
+  print("3. 20 to 40")
+  print("4. 41 to 65")
+  print("5. 65 and above")
+  print("6. Skip")
+  try:
+    age_cat = int(input("\nEnter a number between 1-6: "))
+    if  6 >= age_cat >= 1:
+      gender_categorization()
+    else:
+      print("Invalid input! Please try again.")
       return age_categorization()
-  def gender_categorization():
-    global gen_cat
-    print("------------------------------------")
-    print("Gender categorization: ")
-    print("1. Female")
-    print("2. Male")
-    print("3. Other")
-    print("4. Skip")
-    try:
-      gen_cat = int(input("\nEnter a number between 1-4: "))
-      if  4 >= gen_cat >= 1 :
-        new_product()
-      else:
-        print("Invalid input! Please try again.")
-        return gender_categorization()
-    except Exception:
-      print("\nInvalid input! Please try again.")
-      return age_categorization()
+  except Exception:
+    print("\nInvalid input! Please try again.")
+    return age_categorization()
+    
+def gender_categorization():
+  global gen_cat
+  print("------------------------------------")
+  print("Gender categorization: ")
+  print("1. Female")
+  print("2. Male")
+  print("3. Other")
+  print("4. Skip")
+  try:
+    gen_cat = int(input("\nEnter a number between 1-4: "))
+    if  4 >= gen_cat >= 1:
+      new_product()
+    else:
+      print("Invalid input! Please try again.")
+      return gender_categorization()
+  except Exception:
+    print("\nInvalid input! Please try again.")
+    return age_categorization()
+    
+def new_product():
+  global age_cat
+  global gen_cat
+  new_product = Product(type, price, total) 
+  inventory.append(new_product.features()) # adds new product features to the inventory
       
- 
+
   if gen_cat == 1 and age_cat == 1: #lists for gender and age.
+    global gen1Age1
     gen1Age1 = [].append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 1:
@@ -166,7 +174,7 @@ def add_new_product():
   elif gen_cat == 3 or 4 and age_cat == 1:
     global gen34Age1
     gen34Age1 = [].append(new_product.features())
-
+  
     
   elif gen_cat == 1 and age_cat == 2:
     global gen1Age2
@@ -175,11 +183,11 @@ def add_new_product():
   elif gen_cat == 2 and age_cat == 2:
     global gen2Age2
     gen2Age2 = [].append(new_product.features())
-
+  
   elif gen_cat == 3 or 4 and age_cat == 2:
     global gen34Age2
     gen34Age2 = [].append(new_product.features())
-
+  
   
   elif gen_cat == 1 and age_cat == 3:
     global gen1Age3
@@ -192,7 +200,7 @@ def add_new_product():
   elif gen_cat == 3 or 4 and age_cat == 3:
     global gen34Age3
     gen34Age3 = [].append(new_product.features())
-
+  
   
   elif gen_cat == 1 and age_cat == 4:
     global gen1Age4
@@ -205,8 +213,8 @@ def add_new_product():
   elif gen_cat == 3 or 4 and age_cat == 4:
     global gen34Age4
     gen34Age4 = [].append(new_product.features())
-
-
+  
+  
   elif gen_cat == 1 and age_cat == 5:
     global gen1Age5
     gen1Age5 = [].append(new_product.features()) 
@@ -218,7 +226,7 @@ def add_new_product():
   elif gen_cat == 3 or 4 and age_cat == 5:
     global gen34Age5
     gen34Age5 = [].append(new_product.features())
-
+  
   elif gen_cat == 1 and age_cat == 6:
     global gen1Age6
     gen1Age6 = [].append(new_product.features()) 
@@ -231,14 +239,10 @@ def add_new_product():
     global gen34Age6
     gen34Age6 = [].append(new_product.features())
 
-    
-   # creates a new product 
-  def new_product():
-    global new_product
-    new_product = Product(type, price, total) 
-    inventory.append(new_product.features()) # adds new product features to the inventory
-    
-  age_categorization()
+  
+ # creates a new product 
+
+
 
   
     
@@ -369,8 +373,7 @@ class Product:
              }
 
 def chatbot():
-  global age_cat
-  global gen_cat
+  
   name = str(input('\nHi, what is your name? ')).capitalize()
   print("\n------------------------------------\n")
   print(f"\n{name}, I'm Simon and I'm here to help you.")
@@ -431,8 +434,8 @@ def chatbot():
   
         good = ["good", "awesome", "nice", "alright", "okay", "ok", "alr", "rad", "cool", "best", "bright", "super", "splendid", "lovely", "exciting", "happy", "smooth", "pleasant", "lucky", "fine", "great"]
         bad = ["bad", "awful", "not good", "horrible", "long", "miserable", "sad", "rough", "crappy", "worst", "unpleasant", "dissapointing", "dreadful", "difficult", "none of your business", "horrendous", "long"]
-        boring = ["meh", "eh", "boring", "repetitive", "dull", "unvaried", "in between", "not bad, not good"]
-        interesting = ["interesting", "fascinating", "surprising", "shocking", "weird", "strange", "confusing"]
+        boring = ["meh", "eh", "boring", "repetitive", "dull", "unvaried", "in between", "not bad, not good", "usual"]
+        interesting = ["interesting", "fascinating", "surprising", "shocking", "weird", "strange", "confusing", "unusual"]
   
         good_response = ["\n I agree! What a pleasant day it is.",
                          "\nWhat a lovely day for both of us!",
@@ -478,6 +481,8 @@ def chatbot():
         
  
   def recommendations():
+    global age_cat
+    global gen_cat
     global gen1Age1
     list_allAges_genF = [4, 5]
     list_allAges_genE = [0, 1, 2, 3]
@@ -494,12 +499,12 @@ def chatbot():
         print("----------------------------")   
         for key, value in product.items():
           print("{0}\t\t{1}".format(key, value))
-      print(gen1Age1)    
- #     for product in gen1Age1:
- #       print("----------------------------")   
- #       for key, value in product.items():
- #         print("{0}\t\t{1}".format(key, value))2
- #   print("___________________________")
+      
+      for product in gen1Age1:  
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("___________________________")
       
     
             
