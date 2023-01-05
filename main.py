@@ -7,6 +7,7 @@ import random  # used to generate random PID o
 isUsed = True # True= program is running and False = program ends o
 sales_list =[] # empty list of product to store sales o 
 
+
 inventory = [
   {'prod_Id': 4327, 'type': 'Shoes', 'price': 100.0, 'total': 20},
   {'prod_Id': 3915, 'type': 'Tshirts', 'price': 43.5, 'total': 32},
@@ -107,11 +108,14 @@ def display_inventory():
 
 # add a new product function
 def add_new_product():
+  gen_cat = ""
+  age_cat = ""
   print("\n **Adding A New Product To The Inventory**")
   print("------------------------------------")
   type = input("Enter a type: ")
   price = int(input("Enter a price: "))
   total = int(input("Enter a total: "))
+  
   def age_categorization():
     global age_cat
     print("------------------------------------")
@@ -150,13 +154,94 @@ def add_new_product():
     except Exception:
       print("\nInvalid input! Please try again.")
       return age_categorization()
+      
+ 
+  if gen_cat == 1 and age_cat == 1: #lists for gender and age.
+    gen1Age1 = [].append(new_product.features())
+    
+  elif gen_cat == 2 and age_cat == 1:
+    global gen2Age1
+    gen2Age1 = [].append(new_product.features()) 
+    
+  elif gen_cat == 3 or 4 and age_cat == 1:
+    global gen34Age1
+    gen34Age1 = [].append(new_product.features())
+
+    
+  elif gen_cat == 1 and age_cat == 2:
+    global gen1Age2
+    gen1Age2 = [].append(new_product.features()) 
+    
+  elif gen_cat == 2 and age_cat == 2:
+    global gen2Age2
+    gen2Age2 = [].append(new_product.features())
+
+  elif gen_cat == 3 or 4 and age_cat == 2:
+    global gen34Age2
+    gen34Age2 = [].append(new_product.features())
+
   
+  elif gen_cat == 1 and age_cat == 3:
+    global gen1Age3
+    gen1Age3 = [].append(new_product.features()) 
+    
+  elif gen_cat == 2 and age_cat == 3:
+    global gen2Age3
+    gen2Age3 = [].append(new_product.features())
+    
+  elif gen_cat == 3 or 4 and age_cat == 3:
+    global gen34Age3
+    gen34Age3 = [].append(new_product.features())
+
+  
+  elif gen_cat == 1 and age_cat == 4:
+    global gen1Age4
+    gen1Age4 = [].append(new_product.features()) 
+    
+  elif gen_cat == 2 and age_cat == 4:
+    global gen2Age4
+    gen2Age4 = [].append(new_product.features())
+    
+  elif gen_cat == 3 or 4 and age_cat == 4:
+    global gen34Age4
+    gen34Age4 = [].append(new_product.features())
+
+
+  elif gen_cat == 1 and age_cat == 5:
+    global gen1Age5
+    gen1Age5 = [].append(new_product.features()) 
+    
+  elif gen_cat == 2 and age_cat == 5:
+    global gen2Age5
+    gen2Age5 = [].append(new_product.features())
+    
+  elif gen_cat == 3 or 4 and age_cat == 5:
+    global gen34Age5
+    gen34Age5 = [].append(new_product.features())
+
+  elif gen_cat == 1 and age_cat == 6:
+    global gen1Age6
+    gen1Age6 = [].append(new_product.features()) 
+    
+  elif gen_cat == 2 and age_cat == 6:
+    global gen2Age6
+    gen2Age6 = [].append(new_product.features())
+    
+  elif gen_cat == 3 or 4 and age_cat == 6:
+    global gen34Age6
+    gen34Age6 = [].append(new_product.features())
+
+    
    # creates a new product 
   def new_product():
+    global new_product
     new_product = Product(type, price, total) 
     inventory.append(new_product.features()) # adds new product features to the inventory
     
   age_categorization()
+
+  
+    
 # delete a product from inventory
 def remove_product():
   toDeleteIndex = -99
@@ -393,6 +478,7 @@ def chatbot():
         
  
   def recommendations():
+    global gen1Age1
     list_allAges_genF = [4, 5]
     list_allAges_genE = [0, 1, 2, 3]
     list_allAges_genM = [6]
@@ -403,11 +489,19 @@ def chatbot():
     print("2. I am not interested\n")
     
     if 0 <= age < 11 and gender == 1:
+      
       for product in new_list_allAges_genF:
         print("----------------------------")   
         for key, value in product.items():
           print("{0}\t\t{1}".format(key, value))
-    print("___________________________")
+      print(gen1Age1)    
+ #     for product in gen1Age1:
+ #       print("----------------------------")   
+ #       for key, value in product.items():
+ #         print("{0}\t\t{1}".format(key, value))2
+ #   print("___________________________")
+      
+    
             
          
     
