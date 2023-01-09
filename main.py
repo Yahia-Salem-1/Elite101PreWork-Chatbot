@@ -1,4 +1,4 @@
-# NOTICE: This was made before the Elite101 request of making a chatbot, except for the chatbot itself and a couple of other features. The shop was premade, but the chatbot was NOT. In addition, some features, such as adding items, are modified to help make the chatbot. I am the owner of the premade shop and the chatbot.
+# NOTICE: This was made before the Elite101 request of making a chatbot, except for the chatbot itself and a couple of other features. The shop was premade (and a lot of its features were made by me), but the chatbot was NOT PREMADE. In addition, some features, such as adding items, are modified to help make the chatbot. I am the owner of the shop and the chatbot.
 
 #############
 #Section 1 - Import Modules and Global Variables
@@ -77,7 +77,7 @@ def money_syst():
   
   elif choice_money == "opt2":
     try:
-      money = int(input('\nHow much do you want to have?: '))
+      money = float(input('\nHow much do you want to have?: '))
       print(f'\nMoney: {money}\n')
 
     except ValueError:
@@ -108,137 +108,160 @@ def display_inventory():
 
 # add a new product function
 def add_new_product():
-  gen_cat = ""
-  age_cat = ""
+  global type, price, total
   print("\n **Adding A New Product To The Inventory**")
   print("------------------------------------")
   type = input("Enter a type: ")
-  price = int(input("Enter a price: "))
+  price = float(input("Enter a price: "))
   total = int(input("Enter a total: "))
+  age_categorization()
   
-  def age_categorization():
-    global age_cat
-    print("------------------------------------")
-    print("Age categorization: ")
-    print("1. under 11")
-    print("2. 11 to 19")
-    print("3. 20 to 40")
-    print("4. 41 to 65")
-    print("5. 65 and above")
-    print("6. Skip")
-    try:
-      age_cat = int(input("\nEnter a number between 1-6: "))
-      if  6 >= age_cat >= 1 :
-        gender_categorization()
-      else:
-        print("Invalid input! Please try again.")
-        return age_categorization()
-    except Exception:
-      print("\nInvalid input! Please try again.")
+def age_categorization():
+  global age_cat
+  print("------------------------------------")
+  print("Age categorization: ")
+  print("1. under 11")
+  print("2. 11 to 19")
+  print("3. 20 to 40")
+  print("4. 41 to 65")
+  print("5. 65 and above")
+  print("6. Skip")
+  try:
+    age_cat = int(input("\nEnter a number between 1-6: "))
+    if  6 >= age_cat >= 1:
+      gender_categorization()
+    else:
+      print("Invalid input! Please try again.")
       return age_categorization()
-  def gender_categorization():
-    global gen_cat
-    print("------------------------------------")
-    print("Gender categorization: ")
-    print("1. Female")
-    print("2. Male")
-    print("3. Other")
-    print("4. Skip")
-    try:
-      gen_cat = int(input("\nEnter a number between 1-4: "))
-      if  4 >= gen_cat >= 1 :
-        new_product()
-      else:
-        print("Invalid input! Please try again.")
-        return gender_categorization()
-    except Exception:
-      print("\nInvalid input! Please try again.")
-      return age_categorization()
+  except Exception:
+    print("\nInvalid input! Please try again.")
+    return age_categorization()
+    
+def gender_categorization():
+  global gen_cat
+  print("------------------------------------")
+  print("Gender categorization: ")
+  print("1. Female")
+  print("2. Male")
+  print("3. Other")
+  print("4. Skip")
+  try:
+    gen_cat = int(input("\nEnter a number between 1-4: "))
+    if  4 >= gen_cat >= 1:
+      new_product()
+    else:
+      print("Invalid input! Please try again.")
+      return gender_categorization()
+  except Exception:
+    print("\nInvalid input! Please try again.")
+    return age_categorization()
+    
+def new_product():
+  global age_cat
+  global gen_cat
+  new_product = Product(type, price, total) 
+  inventory.append(new_product.features()) # adds new product features to the inventory
       
- 
+
   if gen_cat == 1 and age_cat == 1: #lists for gender and age.
-    gen1Age1 = [].append(new_product.features())
+    global gen1Age1
+    gen1Age1 = []
+    gen1Age1.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 1:
     global gen2Age1
-    gen2Age1 = [].append(new_product.features()) 
+    gen2Age1 = []
+    gen2Age1.append(new_product.features())
     
   elif gen_cat == 3 or 4 and age_cat == 1:
     global gen34Age1
-    gen34Age1 = [].append(new_product.features())
-
+    gen34Age1 = []
+    gen34Age1.append(new_product.features())
+  
     
-  elif gen_cat == 1 and age_cat == 2:
+  elif gen_cat == 1 and age_cat == 2: 
     global gen1Age2
-    gen1Age2 = [].append(new_product.features()) 
+    gen1Age2 = []
+    gen1Age2.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 2:
     global gen2Age2
-    gen2Age2 = [].append(new_product.features())
-
+    gen2Age2 = []
+    gen2Age2.append(new_product.features())
+    
   elif gen_cat == 3 or 4 and age_cat == 2:
     global gen34Age2
-    gen34Age2 = [].append(new_product.features())
-
+    gen34Age2 = []
+    gen34Age2.append(new_product.features())
   
-  elif gen_cat == 1 and age_cat == 3:
+  
+  elif gen_cat == 1 and age_cat == 3: 
     global gen1Age3
-    gen1Age3 = [].append(new_product.features()) 
+    gen1Age3 = []
+    gen1Age3.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 3:
     global gen2Age3
-    gen2Age3 = [].append(new_product.features())
+    gen2Age3 = []
+    gen2Age3.append(new_product.features())
     
   elif gen_cat == 3 or 4 and age_cat == 3:
     global gen34Age3
-    gen34Age3 = [].append(new_product.features())
-
+    gen34Age3 = []
+    gen34Age3.append(new_product.features())
   
-  elif gen_cat == 1 and age_cat == 4:
+  
+  elif gen_cat == 1 and age_cat == 4: 
     global gen1Age4
-    gen1Age4 = [].append(new_product.features()) 
+    gen1Age4 = []
+    gen1Age4.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 4:
     global gen2Age4
-    gen2Age4 = [].append(new_product.features())
+    gen2Age4 = []
+    gen2Age4.append(new_product.features())
     
   elif gen_cat == 3 or 4 and age_cat == 4:
     global gen34Age4
-    gen34Age4 = [].append(new_product.features())
-
-
-  elif gen_cat == 1 and age_cat == 5:
+    gen34Age4 = []
+    gen34Age4.append(new_product.features())
+  
+  
+  elif gen_cat == 1 and age_cat == 5: 
     global gen1Age5
-    gen1Age5 = [].append(new_product.features()) 
+    gen1Age5 = []
+    gen1Age5.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 5:
     global gen2Age5
-    gen2Age5 = [].append(new_product.features())
+    gen2Age5 = []
+    gen2Age5.append(new_product.features())
     
   elif gen_cat == 3 or 4 and age_cat == 5:
     global gen34Age5
-    gen34Age5 = [].append(new_product.features())
+    gen34Age5 = []
+    gen34Age5.append(new_product.features())
 
-  elif gen_cat == 1 and age_cat == 6:
+  
+  elif gen_cat == 1 and age_cat == 6: 
     global gen1Age6
-    gen1Age6 = [].append(new_product.features()) 
+    gen1Age6 = []
+    gen1Age6.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 6:
     global gen2Age6
-    gen2Age6 = [].append(new_product.features())
+    gen2Age6 = []
+    gen2Age6.append(new_product.features())
     
   elif gen_cat == 3 or 4 and age_cat == 6:
     global gen34Age6
-    gen34Age6 = [].append(new_product.features())
+    gen34Age6 = [] 
+    gen34Age6.append(new_product.features())
 
-    
-   # creates a new product 
-  def new_product():
-    global new_product
-    new_product = Product(type, price, total) 
-    inventory.append(new_product.features()) # adds new product features to the inventory
-    
-  age_categorization()
+  
+ # creates a new product 
+
+
 
   
     
@@ -369,8 +392,7 @@ class Product:
              }
 
 def chatbot():
-  global age_cat
-  global gen_cat
+  
   name = str(input('\nHi, what is your name? ')).capitalize()
   print("\n------------------------------------\n")
   print(f"\n{name}, I'm Simon and I'm here to help you.")
@@ -431,8 +453,8 @@ def chatbot():
   
         good = ["good", "awesome", "nice", "alright", "okay", "ok", "alr", "rad", "cool", "best", "bright", "super", "splendid", "lovely", "exciting", "happy", "smooth", "pleasant", "lucky", "fine", "great"]
         bad = ["bad", "awful", "not good", "horrible", "long", "miserable", "sad", "rough", "crappy", "worst", "unpleasant", "dissapointing", "dreadful", "difficult", "none of your business", "horrendous", "long"]
-        boring = ["meh", "eh", "boring", "repetitive", "dull", "unvaried", "in between", "not bad, not good"]
-        interesting = ["interesting", "fascinating", "surprising", "shocking", "weird", "strange", "confusing"]
+        boring = ["meh", "eh", "boring", "repetitive", "dull", "unvaried", "in between", "not bad, not good", "usual"]
+        interesting = ["interesting", "fascinating", "surprising", "shocking", "weird", "strange", "confusing", "unusual"]
   
         good_response = ["\n I agree! What a pleasant day it is.",
                          "\nWhat a lovely day for both of us!",
@@ -478,12 +500,23 @@ def chatbot():
         
  
   def recommendations():
+    global age_cat
+    global gen_cat
     global gen1Age1
+    
     list_allAges_genF = [4, 5]
-    list_allAges_genE = [0, 1, 2, 3]
+    list_allAges_genE_1 = [0, 1]
+    list_allAges_genE_2 = [2, 3]
     list_allAges_genM = [6]
+    
     new_list_allAges_genF = [inventory[index] for index in list_allAges_genF]
+    new_list_allAges_genE_1 = [inventory[index] for index in list_allAges_genE_1]
+    new_list_allAges_genE_2 = [inventory[index] for index in list_allAges_genE_2]
+    new_list_allAges_genM = [inventory[index] for index in list_allAges_genM]
+    
+    list_allAges_genE = [new_list_allAges_genE_1, new_list_allAges_genE_2]
     #learned from https://bobbyhadz.com/blog/python-access-multiple-elements-in-list-by-index
+    
     print("\nHere are some recommendations for you:\n\n")
     print("1. I am interested.")
     print("2. I am not interested\n")
@@ -494,15 +527,477 @@ def chatbot():
         print("----------------------------")   
         for key, value in product.items():
           print("{0}\t\t{1}".format(key, value))
-      print(gen1Age1)    
- #     for product in gen1Age1:
- #       print("----------------------------")   
- #       for key, value in product.items():
- #         print("{0}\t\t{1}".format(key, value))2
- #   print("___________________________")
-      
+      try:
+        for product in gen1Age1:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+    elif 11 <= age <= 19 and gender == 1:
     
-            
+      for product in new_list_allAges_genF:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      
+      try:
+        for product in gen1Age2:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+    elif 20 <= age <= 40 and gender == 1:
+    
+      for product in new_list_allAges_genF:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      
+      try:
+        for product in gen1Age3:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+    elif 41 <= age <= 65 and gender == 1:
+    
+      for product in new_list_allAges_genF:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      
+      try:
+        for product in gen1Age4:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+    elif 65 < age and gender == 1:
+    
+      for product in new_list_allAges_genF:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      
+      try:
+        for product in gen1Age5:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+    elif age == -1 and gender == 1:
+    
+      for product in new_list_allAges_genF:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      
+      try:
+        for product in gen1Age6:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+
+
+    elif 0 <= age < 11 and gender == 2:
+      
+      for product in new_list_allAges_genM:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      try:
+        for product in gen2Age1:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+    elif 11 <= age <= 19 and gender == 2:
+    
+      for product in new_list_allAges_genM:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      
+      try:
+        for product in gen2Age2:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+    elif 20 <= age <= 40 and gender == 2:
+    
+      for product in new_list_allAges_genM:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      
+      try:
+        for product in gen2Age3:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+    elif 41 <= age <= 65 and gender == 2:
+    
+      for product in new_list_allAges_genM:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      
+      try:
+        for product in gen2Age4:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+    elif 65 < age and gender == 2:
+    
+      for product in new_list_allAges_genM:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      
+      try:
+        for product in gen2Age5:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+    elif age == -1 and gender == 2:
+    
+      for product in new_list_allAges_genM:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      
+      try:
+        for product in gen2Age6:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+    
+    elif 0 <= age < 11 and gender == 3 or 4:
+
+      for product in new_list_allAges_genE_1 and new_list_allAges_genE_2:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+      try:
+        for product in gen34Age1:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+    elif 11 <= age <= 19 and gender == 3 or 4:
+
+      for product in new_list_allAges_genE_1 and new_list_allAges_genE_2:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+      try:
+        for product in gen34Age2:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+    elif 20 <= age <= 40 and gender == 3 or 4:
+
+      for product in new_list_allAges_genE_1 and new_list_allAges_genE_2:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+      try:
+        for product in gen34Age3:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+    elif 41 <= age <= 65 and gender == 3 or 4:
+
+      for product in new_list_allAges_genE_1 and new_list_allAges_genE_2:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+      try:
+        for product in gen34Age4:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+
+    elif age < 65 and gender == 3 or 4:
+
+      for product in new_list_allAges_genE_1 and new_list_allAges_genE_2:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+      try:
+        for product in gen34Age5:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+    elif age == -1 and gender == 3 or 4:
+      
+      for product in new_list_allAges_genE_1 and new_list_allAges_genE_2:
+        print("----------------------------")   
+        for key, value in product.items():
+          print("{0}\t\t{1}".format(key, value))
+      print("____________________________")
+
+      try:
+        for product in gen34Age6:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+    try:
+      interested_question = int(input("\nEnter a number: "))
+
+    except Exception:
+      print("Invalid Input! Please Try Again.\n")
+      return recommendations()
+
+    if interested_question == 1:
+      order_product()
+    elif interested_question == 2:
+      chatbot_menu()
+
+    else:
+      print("Invalid Input! Please Try Again.\n")
+      return recommendations()
+      
+  def chatbot_menu():
+    
+    def feedback():
+      topic = input("\n\nTopic: ")
+      description = input("\nDescribe your issue or recommendation: ")
+      print("\n1. Submit")
+      print("\n2. Cancel")
+      
+      try:
+        submission = int(input("\nEnter a number: "))
+      except Exception:
+        print("\nInvalid Input! Please Try Again.\n")
+        return feedback()
+        
+      if submission == 1:
+        print("\nThank you for your feedback!")
+        chatbot_menu()
+      elif submission == 2:
+        return chatbot_menu()
+      else:
+        print("\nInvalid Input! Please Try Again.\n")
+        feedback()
+        
+      
+    def help_customer():
+      print(f"\n\nHey, {name}! What do you need help with?")
+      print("\n1. Selecting")
+      print("\n2. Adding new products")
+      print("\n3. Removing products")
+      print("\n4. Ordering products")
+      print("\n5. Restocking products")
+      print("\n6. Other")
+      
+      try:
+        help_me = int(input("\nEnter a number between 1-5: "))
+      except Exception:
+        print("\nInvalid Input! Please Try Again.\n")
+        return help_me()
+
+      if help_me == 1:
+        print('\nTo select, all you have to do is look at the number to the left of the option (bullet) and type it in where it says, "Enter a number." \n\nAfter typing in the number, you selected the option you wanted to select and will be enjoying its features.')
+        return chatbot_menu()
+      
+      elif help_me == 2: 
+        print("\nTo add a new product, enter a type, which is the name of the product. Then, enter the price of the product. Next, type in the quantity, or total, you want to add. Finally, select a specific gender and age group the product will most likely appeal to, or skip the question. \n\nNow you added a new product. It should be added to the inventory and be added to a list based on age and gender that it can appeal to.")
+        return chatbot_menu()
+
+      elif help_me == 3: 
+        print('\nTo remove an existing product, select "Remove product" from the menu, then enter the product ID of the thing you want to remove provided in the list of items.\n\nNow, you removed the product from the inventory and therefore, cannot be ordered again.')
+        return chatbot_menu()
+
+      elif help_me == 4: 
+        print("\nTo order a product, enter the product ID of the item provided on the list above. Then, select the quantity you want.\n\nTwo things to keep in mind is that ordering a product takes away some of your money and that you can not order a quantity larger than the available ones. To do that, you have to restock the product.")
+        return chatbot_menu()
+        
+      elif help_me == 5:
+        print("\nTo restock a product, you must enter the product ID listed above. Then, enter the amount you want to add to the existing inventory.\n\nNow, you restocked a product.")
+        return chatbot_menu()
+
+      elif help_me == 6:
+        feedback()
+
+      else: 
+        print("\nInvalid Input! Please Try Again.\n")
+        return help_customer()
+        
+
+      
+    print("\n----------------------------")
+    print("***CUSTOMER SERVICE***")
+    print("\n1. Feedback")
+    print("\n2. Help")
+    print("\n3. See Recommendations")
+    print("\n4. Exit Customer Service")
+    try:
+      chatbot_menu_s = int(input("\n\nEnter a number: "))
+    
+    except Exception:
+      print("\nInvalid Input! Please Try Again.\n")
+      return chatbot_menu()
+
+    if chatbot_menu_s == 1:
+      feedback()
+    elif chatbot_menu_s == 2:
+      help_customer()
+    elif chatbot_menu_s == 3:
+      recommendations()
+    elif chatbot_menu_s == 4:
+      return user_selection()
+    else:
+      print("\nInvalid Input! Please Try Again.\n")
+      return chatbot_menu()
+
          
     
   age_func()
