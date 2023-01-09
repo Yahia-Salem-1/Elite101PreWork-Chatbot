@@ -901,11 +901,41 @@ def chatbot():
     elif interested_question == 2:
       chatbot_menu()
 
-  def chatbot_menu():
-    pass
+    else:
+      print("Invalid Input! Please Try Again.\n")
+      return recommendations()
       
+  def chatbot_menu():
+    print("----------------------------")
+    print("***CUSTOMER SERVICE***")
+    print("\n1. Feedback")
+    print("\n2. Help")
+    print("\n3. See Recommendations")
+    print("\n4. Exit Customer Service")
+    try:
+      chatbot_menu = int(input("\n\nEnter a number: "))
     
-            
+    except Exception:
+      print("Invalid Input! Please Try Again.\n")
+      return chatbot_menu()
+
+    if chatbot_menu == 1:
+      feedback()
+    elif chatbot_menu == 2:
+      help_customer()
+    elif chatbot_menu == 3:
+      recommendations()
+    elif chatbot_menu == 4:
+      return user_selection()
+    else:
+      print("Invalid Input! Please Try Again.\n")
+      return chatbot_menu()
+
+    def feedback():
+      pass
+      
+    def help_customer():
+      pass
          
     
   age_func()
