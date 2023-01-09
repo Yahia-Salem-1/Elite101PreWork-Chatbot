@@ -112,7 +112,7 @@ def add_new_product():
   print("\n **Adding A New Product To The Inventory**")
   print("------------------------------------")
   type = input("Enter a type: ")
-  price = int(input("Enter a price: "))
+  price = float(input("Enter a price: "))
   total = int(input("Enter a total: "))
   age_categorization()
   
@@ -165,79 +165,98 @@ def new_product():
 
   if gen_cat == 1 and age_cat == 1: #lists for gender and age.
     global gen1Age1
-    gen1Age1 = [].append(new_product.features())
+    gen1Age1 = []
+    gen1Age1.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 1:
     global gen2Age1
-    gen2Age1 = [].append(new_product.features()) 
+    gen2Age1 = []
+    gen2Age1.append(new_product.features())
     
   elif gen_cat == 3 or 4 and age_cat == 1:
     global gen34Age1
-    gen34Age1 = [].append(new_product.features())
+    gen34Age1 = []
+    gen34Age1.append(new_product.features())
   
     
-  elif gen_cat == 1 and age_cat == 2:
+  elif gen_cat == 1 and age_cat == 2: 
     global gen1Age2
-    gen1Age2 = [].append(new_product.features()) 
+    gen1Age2 = []
+    gen1Age2.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 2:
     global gen2Age2
-    gen2Age2 = [].append(new_product.features())
-  
+    gen2Age2 = []
+    gen2Age2.append(new_product.features())
+    
   elif gen_cat == 3 or 4 and age_cat == 2:
     global gen34Age2
-    gen34Age2 = [].append(new_product.features())
+    gen34Age2 = []
+    gen34Age2.append(new_product.features())
   
   
-  elif gen_cat == 1 and age_cat == 3:
+  elif gen_cat == 1 and age_cat == 3: 
     global gen1Age3
-    gen1Age3 = [].append(new_product.features()) 
+    gen1Age3 = []
+    gen1Age3.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 3:
     global gen2Age3
-    gen2Age3 = [].append(new_product.features())
+    gen2Age3 = []
+    gen2Age3.append(new_product.features())
     
   elif gen_cat == 3 or 4 and age_cat == 3:
     global gen34Age3
-    gen34Age3 = [].append(new_product.features())
+    gen34Age3 = []
+    gen34Age3.append(new_product.features())
   
   
-  elif gen_cat == 1 and age_cat == 4:
+  elif gen_cat == 1 and age_cat == 4: 
     global gen1Age4
-    gen1Age4 = [].append(new_product.features()) 
+    gen1Age4 = []
+    gen1Age4.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 4:
     global gen2Age4
-    gen2Age4 = [].append(new_product.features())
+    gen2Age4 = []
+    gen2Age4.append(new_product.features())
     
   elif gen_cat == 3 or 4 and age_cat == 4:
     global gen34Age4
-    gen34Age4 = [].append(new_product.features())
+    gen34Age4 = []
+    gen34Age4.append(new_product.features())
   
   
-  elif gen_cat == 1 and age_cat == 5:
+  elif gen_cat == 1 and age_cat == 5: 
     global gen1Age5
-    gen1Age5 = [].append(new_product.features()) 
+    gen1Age5 = []
+    gen1Age5.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 5:
     global gen2Age5
-    gen2Age5 = [].append(new_product.features())
+    gen2Age5 = []
+    gen2Age5.append(new_product.features())
     
   elif gen_cat == 3 or 4 and age_cat == 5:
     global gen34Age5
-    gen34Age5 = [].append(new_product.features())
+    gen34Age5 = []
+    gen34Age5.append(new_product.features())
+
   
-  elif gen_cat == 1 and age_cat == 6:
+  elif gen_cat == 1 and age_cat == 6: 
     global gen1Age6
-    gen1Age6 = [].append(new_product.features()) 
+    gen1Age6 = []
+    gen1Age6.append(new_product.features())
     
   elif gen_cat == 2 and age_cat == 6:
     global gen2Age6
-    gen2Age6 = [].append(new_product.features())
+    gen2Age6 = []
+    gen2Age6.append(new_product.features())
     
   elif gen_cat == 3 or 4 and age_cat == 6:
     global gen34Age6
-    gen34Age6 = [].append(new_product.features())
+    gen34Age6 = [] 
+    gen34Age6.append(new_product.features())
 
   
  # creates a new product 
@@ -484,11 +503,20 @@ def chatbot():
     global age_cat
     global gen_cat
     global gen1Age1
+    
     list_allAges_genF = [4, 5]
-    list_allAges_genE = [0, 1, 2, 3]
+    list_allAges_genE_1 = [0, 1]
+    list_allAges_genE_2 = [2, 3]
     list_allAges_genM = [6]
+    
     new_list_allAges_genF = [inventory[index] for index in list_allAges_genF]
+    new_list_allAges_genE_1 = [inventory[index] for index in list_allAges_genE_1]
+    new_list_allAges_genE_2 = [inventory[index] for index in list_allAges_genE_2]
+    new_list_allAges_genM = [inventory[index] for index in list_allAges_genM]
+    
+    list_allAges_genE = [new_list_allAges_genE_1, new_list_allAges_genE_2]
     #learned from https://bobbyhadz.com/blog/python-access-multiple-elements-in-list-by-index
+    
     print("\nHere are some recommendations for you:\n\n")
     print("1. I am interested.")
     print("2. I am not interested\n")
@@ -499,12 +527,22 @@ def chatbot():
         print("----------------------------")   
         for key, value in product.items():
           print("{0}\t\t{1}".format(key, value))
-      
-      for product in gen1Age1:  
+      try:
+        for product in gen1Age1:  
+          print("----------------------------")   
+          for key, value in product.items():
+            print("{0}\t\t{1}".format(key, value))
+
+      except Exception: 
+        pass
+
+      for product in random.choice(list_allAges_genE):
         print("----------------------------")   
         for key, value in product.items():
           print("{0}\t\t{1}".format(key, value))
-      print("___________________________")
+      print("____________________________")
+
+    
       
     
             
