@@ -932,7 +932,26 @@ def chatbot():
       return chatbot_menu()
 
     def feedback():
-      pass
+      topic = input("\n\nTopic: ")
+      description = input("\nDescribe your issue or recommendation: ")
+      print("\n1. Submit")
+      print("\n2. Cancel")
+      
+      try:
+        submission = int(input("Enter a number: "))
+      except Exception:
+        print("Invalid Input! Please Try Again.\n")
+        return feedback()
+        
+      if submission == 1:
+        print("\nThank you for your feedback!")
+        chatbot_menu()
+      elif submission == 2:
+        return chatbot_menu()
+      else:
+        print("Invalid Input! Please Try Again.\n")
+        return feedback()
+        
       
     def help_customer():
       pass
