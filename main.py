@@ -914,9 +914,9 @@ def chatbot():
       print("\n2. Cancel")
       
       try:
-        submission = int(input("Enter a number: "))
+        submission = int(input("\nEnter a number: "))
       except Exception:
-        print("Invalid Input! Please Try Again.\n")
+        print("\nInvalid Input! Please Try Again.\n")
         return feedback()
         
       if submission == 1:
@@ -925,8 +925,8 @@ def chatbot():
       elif submission == 2:
         return chatbot_menu()
       else:
-        print("Invalid Input! Please Try Again.\n")
-        return feedback()
+        print("\nInvalid Input! Please Try Again.\n")
+        feedback()
         
       
     def help_customer():
@@ -939,58 +939,63 @@ def chatbot():
       print("\n6. Other")
       
       try:
-        help_me = int(input("Enter a number between 1-5: "))
+        help_me = int(input("\nEnter a number between 1-5: "))
       except Exception:
-        print("Invalid Input! Please Try Again.\n")
+        print("\nInvalid Input! Please Try Again.\n")
         return help_me()
 
       if help_me == 1:
-        print('\n\tTo select, all you have to do is look at the number to the left of the option (bullet) and type it in where it says, "Enter a number." \n\n\tAfter typing in the number, you selected the option you wanted to select and will be enjoying its features.')
+        print('\nTo select, all you have to do is look at the number to the left of the option (bullet) and type it in where it says, "Enter a number." \n\nAfter typing in the number, you selected the option you wanted to select and will be enjoying its features.')
+        return chatbot_menu()
       
       elif help_me == 2: 
-        print("\n\tTo add a new product, enter a type, which is the name of the product. Then, enter the price of the product. Next, type in the quantity, or total, you want to add. Finally, select a specific gender and age group the product will most likely appeal to, or skip the question. \n\n\tNow you added a new product. It should be added to the inventory and be added to a list based on age and gender that it can appeal to.")
+        print("\nTo add a new product, enter a type, which is the name of the product. Then, enter the price of the product. Next, type in the quantity, or total, you want to add. Finally, select a specific gender and age group the product will most likely appeal to, or skip the question. \n\nNow you added a new product. It should be added to the inventory and be added to a list based on age and gender that it can appeal to.")
+        return chatbot_menu()
 
       elif help_me == 3: 
-        print('\n\tTo remove an existing product, select "Remove product" from the menu, then enter the product ID of the thing you want to remove provided in the list of items.\n\n\tNow, you removed the product from the inventory and therefore, cannot be ordered again.')
+        print('\nTo remove an existing product, select "Remove product" from the menu, then enter the product ID of the thing you want to remove provided in the list of items.\n\nNow, you removed the product from the inventory and therefore, cannot be ordered again.')
+        return chatbot_menu()
 
       elif help_me == 4: 
-        print("\n\tTo order a product, enter the product ID of the item provided on the list above. Then, select the quantity you want.\n\n\tTwo things to keep in mind is that ordering a product takes away some of your money and that you can not order a quantity larger than the available ones. To do that, you have to restock the product.")
-
+        print("\nTo order a product, enter the product ID of the item provided on the list above. Then, select the quantity you want.\n\nTwo things to keep in mind is that ordering a product takes away some of your money and that you can not order a quantity larger than the available ones. To do that, you have to restock the product.")
+        return chatbot_menu()
+        
       elif help_me == 5:
-        print("\n\tTo restock a product, you must enter the product ID listed above. Then, enter the amount you want to add to the existing inventory.\n\nNow, you restocked a product.")
+        print("\nTo restock a product, you must enter the product ID listed above. Then, enter the amount you want to add to the existing inventory.\n\nNow, you restocked a product.")
+        return chatbot_menu()
 
       elif help_me == 6:
         feedback()
 
       else: 
-        print("Invalid Input! Please Try Again.\n")
-        return help_me()
+        print("\nInvalid Input! Please Try Again.\n")
+        return help_customer()
         
 
       
-    print("----------------------------")
+    print("\n----------------------------")
     print("***CUSTOMER SERVICE***")
     print("\n1. Feedback")
     print("\n2. Help")
     print("\n3. See Recommendations")
     print("\n4. Exit Customer Service")
     try:
-      chatbot_menu = int(input("\n\nEnter a number: "))
+      chatbot_menu_s = int(input("\n\nEnter a number: "))
     
     except Exception:
-      print("Invalid Input! Please Try Again.\n")
+      print("\nInvalid Input! Please Try Again.\n")
       return chatbot_menu()
 
-    if chatbot_menu == 1:
+    if chatbot_menu_s == 1:
       feedback()
-    elif chatbot_menu == 2:
+    elif chatbot_menu_s == 2:
       help_customer()
-    elif chatbot_menu == 3:
+    elif chatbot_menu_s == 3:
       recommendations()
-    elif chatbot_menu == 4:
+    elif chatbot_menu_s == 4:
       return user_selection()
     else:
-      print("Invalid Input! Please Try Again.\n")
+      print("\nInvalid Input! Please Try Again.\n")
       return chatbot_menu()
 
          
