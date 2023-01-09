@@ -1,4 +1,4 @@
-# NOTICE: This was made before the Elite101 request of making a chatbot, except for the chatbot itself and a couple of other features. The shop was premade, but the chatbot was NOT. In addition, some features, such as adding items, are modified to help make the chatbot. I am the owner of the premade shop and the chatbot.
+# NOTICE: This was made before the Elite101 request of making a chatbot, except for the chatbot itself and a couple of other features. The shop was premade (and a lot of its features were made by me), but the chatbot was NOT PREMADE. In addition, some features, such as adding items, are modified to help make the chatbot. I am the owner of the shop and the chatbot.
 
 #############
 #Section 1 - Import Modules and Global Variables
@@ -77,7 +77,7 @@ def money_syst():
   
   elif choice_money == "opt2":
     try:
-      money = int(input('\nHow much do you want to have?: '))
+      money = float(input('\nHow much do you want to have?: '))
       print(f'\nMoney: {money}\n')
 
     except ValueError:
@@ -906,6 +906,68 @@ def chatbot():
       return recommendations()
       
   def chatbot_menu():
+    
+    def feedback():
+      topic = input("\n\nTopic: ")
+      description = input("\nDescribe your issue or recommendation: ")
+      print("\n1. Submit")
+      print("\n2. Cancel")
+      
+      try:
+        submission = int(input("Enter a number: "))
+      except Exception:
+        print("Invalid Input! Please Try Again.\n")
+        return feedback()
+        
+      if submission == 1:
+        print("\nThank you for your feedback!")
+        chatbot_menu()
+      elif submission == 2:
+        return chatbot_menu()
+      else:
+        print("Invalid Input! Please Try Again.\n")
+        return feedback()
+        
+      
+    def help_customer():
+      print(f"\n\nHey, {name}! What do you need help with?")
+      print("\n1. Selecting")
+      print("\n2. Adding new products")
+      print("\n3. Removing products")
+      print("\n4. Ordering products")
+      print("\n5. Restocking products")
+      print("\n6. Other")
+      
+      try:
+        help_me = int(input("Enter a number between 1-5: "))
+      except Exception:
+        print("Invalid Input! Please Try Again.\n")
+        return help_me()
+
+      if help_me == 1:
+        print('\n\tTo select, all you have to do is look at the number to the left of the option (bullet) and type it in where it says, "Enter a number." \n\n\tAfter typing in the number, you selected the option you wanted to select and will be enjoying its features.')
+      
+      elif help_me == 2: 
+        print("\n\tTo add a new product, enter a type, which is the name of the product. Then, enter the price of the product. Next, type in the quantity, or total, you want to add. Finally, select a specific gender and age group the product will most likely appeal to, or skip the question. \n\n\tNow you added a new product. It should be added to the inventory and be added to a list based on age and gender that it can appeal to.")
+
+      elif help_me == 3: 
+        print('\n\tTo remove an existing product, select "Remove product" from the menu, then enter the product ID of the thing you want to remove provided in the list of items.\n\n\tNow, you removed the product from the inventory and therefore, cannot be ordered again.')
+
+      elif help_me == 4: 
+        print("\n\tTo order a product, enter the product ID of the item provided on the list above. Then, select the quantity you want.\n\n\tTwo things to keep in mind is that ordering a product takes away some of your money and that you can not order a quantity larger than the available ones. To do that, you have to restock the product.")
+
+      elif help_me == 5:
+        print("\n\tTo restock a product, you must enter the product ID listed above. Then, enter the amount you want to add to the existing inventory.\n\nNow, you restocked a product.")
+
+      elif help_me == 6:
+        feedback()
+
+      else: 
+        print("Invalid Input! Please Try Again.\n")
+        return help_me()
+        
+
+      
     print("----------------------------")
     print("***CUSTOMER SERVICE***")
     print("\n1. Feedback")
@@ -931,30 +993,6 @@ def chatbot():
       print("Invalid Input! Please Try Again.\n")
       return chatbot_menu()
 
-    def feedback():
-      topic = input("\n\nTopic: ")
-      description = input("\nDescribe your issue or recommendation: ")
-      print("\n1. Submit")
-      print("\n2. Cancel")
-      
-      try:
-        submission = int(input("Enter a number: "))
-      except Exception:
-        print("Invalid Input! Please Try Again.\n")
-        return feedback()
-        
-      if submission == 1:
-        print("\nThank you for your feedback!")
-        chatbot_menu()
-      elif submission == 2:
-        return chatbot_menu()
-      else:
-        print("Invalid Input! Please Try Again.\n")
-        return feedback()
-        
-      
-    def help_customer():
-      pass
          
     
   age_func()
